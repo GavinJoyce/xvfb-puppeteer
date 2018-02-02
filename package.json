@@ -1,0 +1,24 @@
+{
+  "name": "xvfb-puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GavinJoyce/xvfb-puppeteer.git"
+  },
+  "author": "Gavin Joyce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GavinJoyce/xvfb-puppeteer/issues"
+  },
+  "homepage": "https://github.com/GavinJoyce/xvfb-puppeteer#readme",
+  "dependencies": {
+    "delay": "^2.0.0",
+    "puppeteer": "^1.0.0",
+    "xvfb": "^0.2.3"
+  }
+}
