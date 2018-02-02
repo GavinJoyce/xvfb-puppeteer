@@ -9,6 +9,8 @@ const puppeteer = require('puppeteer');
   });
   xvfb.startSync();
 
+  console.log('xvfb started');
+
   let browser = await puppeteer.launch({
     headless: false,
     args: [
@@ -26,7 +28,7 @@ const puppeteer = require('puppeteer');
 
   await page.screenshot({path: 'exotravel.png'});
 
-  console.log('pausing for 20 seconds...');
+  console.log('pausing for 20 seconds... (you can use ffmpeg to record the screen)');
 
   await delay(20000);
 
