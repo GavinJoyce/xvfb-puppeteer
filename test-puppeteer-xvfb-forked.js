@@ -1,4 +1,5 @@
 const delay = require('delay');
+const { fork } = require('child_process');
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -14,7 +15,7 @@ const puppeteer = require('puppeteer');
   let browser = await puppeteer.launch({
     headless: false,
     args: [
-      '--window-size=1440,810',
+      '--window-size=1440,860',
       '--window-position=0,0'
     ]
   });
@@ -24,13 +25,28 @@ const puppeteer = require('puppeteer');
 
   await page.goto('http://exotravel.com/');
 
-  await page.setViewport({ width: 1440, height: 742 });
+  await page.setViewport({ width: 1280, height: 720 });
 
   await page.screenshot({path: 'exotravel.png'});
 
-  console.log('pausing for 20 seconds... (you can use ffmpeg to record the screen)');
+  let screenRecorder = fork('screen-recorder.js');
+  screenRecorder.on('message', (data) => {
+    console.log('Message from screenRecorder', data);
+    if (data.status === 'complete') {
+      screenRecorder.kill('SIGINT');
+    }
+  });
+  screenRecorder.send({ command: 'start' });
 
-  await delay(20000);
+  console.log('pausing for 5 seconds... (you can use ffmpeg to record the screen)');
+
+  await delay(15000);
+
+  screenRecorder.send({ command: 'stop' });
+
+  await delay(5000); //TODO: find a more graceful way
+
+  screenRecorder.kill('SIGINT');
 
   console.log('closing browser');
 
