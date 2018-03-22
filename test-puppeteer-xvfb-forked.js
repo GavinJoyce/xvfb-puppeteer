@@ -14,6 +14,7 @@ async function xvfpRecordScreen(url, callback) {
   let browser = await puppeteer.launch({
     headless: false,
     args: [ //TODO: GJ: allow extensions configuration
+      '--no-sandbox',
       '--window-size=1440,860',
       '--window-position=0,0',
       '--enable-translate-new-ux', //TODO: GJ: find a way to disable translation fully (--disable-translate has been removed)
