@@ -19,6 +19,7 @@
   "dependencies": {
     "delay": "^2.0.0",
     "puppeteer": "^1.0.0",
+    "tmp-promise": "^1.0.4",
     "xvfb": "^0.2.3"
   }
 }
