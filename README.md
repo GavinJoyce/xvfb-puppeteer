@@ -1,9 +1,3 @@
-The following works on Amazon Linux. Here's the result (the video is a little jittery, it will be fixed with some ffmpeg command tweaking):
-
-https://www.youtube.com/watch?v=L6fzImYvzlo
-
-<img width="977" alt="screen shot 2018-02-02 at 21 20 23" src="https://user-images.githubusercontent.com/2526/35755386-ee16b2a2-085e-11e8-881e-9e2da2e0294e.png">
-
 ```
 sudo yum update
 
@@ -51,13 +45,12 @@ ls -la intercom.png
 
 sudo yum install -y xorg-x11-server-Xvfb mesa-libGLU alsa-utils yarn
 
-LD_LIBRARY_PATH=/opt/google/chrome/lib/:${LD_LIBRARY_PATH} node test-puppeteer-xvfb.js
+LD_LIBRARY_PATH=/opt/google/chrome/lib/:${LD_LIBRARY_PATH} node test-puppeteer-xvfb-forked.js
 
 wget https://s3.amazonaws.com/muster-vendor/ffmpeg-release-64bit-static.tar.xz
 tar xf ffmpeg-release-64bit-static.tar.xz
 sudo cp ffmpeg-3.4.1-64bit-static/ffmpeg /usr/local/bin
 
 //https://askubuntu.com/a/365221
-ffmpeg -y -framerate 30 -video_size 1600x1200 -f x11grab -i :99.0 -c:v libx264rgb -crf 0 -preset ultrafast screen.mp4
 ffmpeg -i screen.mp4 -c:v libx264 -crf 23 -preset medium -vf format=yuv420p screen-compressed.mp4
 ```
