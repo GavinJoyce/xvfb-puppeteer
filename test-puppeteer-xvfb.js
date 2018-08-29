@@ -15,7 +15,8 @@ const puppeteer = require('puppeteer');
     headless: false,
     args: [
       '--window-size=1440,810',
-      '--window-position=0,0'
+      '--window-position=0,0',
+      '--use-gl=osmesa',
     ]
   });
 
